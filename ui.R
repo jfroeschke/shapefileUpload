@@ -6,7 +6,7 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("test"),
+  titlePanel("Upload a shapefile"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(

@@ -41,10 +41,23 @@ shinyServer(function(input, output) {
   
   output$Map <- renderLeaflet({ leaflet() %>% setView(0, 0, zoom=2) %>% 
       addTiles() %>% 
-      addPolygons(data=shp_SF()) %>% 
-      addPolygons(data=Ps2SF) %>% 
-      addMouseCoordinates(style=("basic"))
+      #addPolygons(data=shp_SF(), group='upload') %>% 
+      addPolygons(data=Ps2SF, group='mask') %>% 
+      addMouseCoordinates(style=("basic")) #%>% 
+      # addLayersControl(
+      #   overlayGroups = c("upload", "mask"),
+      #   options = layersControlOptions(collapsed = FALSE)
+       
   })
+  
+  observe({
+    Map  <- leafletProxy('Map')
+    Map <- Map %>%  addPolygons(data=shp_SF(), group='upload')
+  Map
+    })
+    
+  
+  
   
   
    output$test <- renderUI({
